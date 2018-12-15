@@ -1,0 +1,157 @@
+j2se:
+标识符,数据类型8,运算符,程序结构,方法（值\引用类型），数组
+类，对象，封装，继承，多态，抽象类，接口
+异常，集合，IO,JDBC
+GUI,Socket,Thread
+枚举,泛型,内部类
+反射,代理,注解
+
+---
+已知一个负数求补码：符号位为1，其余各位取反后加一
+已知一个负数的补码，将其转换为十进制数:
+1、先对各位取反； 2、将其转换为十进制数；3、加上负号，再减去1。
+---
+
+类:
+*类是一组具有相同数据结构和相同操作的对象的集合。
+*类是对象的抽象。 
+*客观世界实际存在的都是对象(万物皆对象)，而不是类 。
+*类是一种抽象的概念，对象是类的一种具体表示形式，是具体的概念。
+先有类，然后由类来生成对象（Object）。对象又叫做实例（Instance）
+*类由两大部分构成：属性以及方法。属性一般用名词来表示，方法一般用动词来表示。public
+
+
+封装(encapsulate)：
+*封装有两个含义：
+    结合性：即把对象的全部属性和方法结合起来，形成一个独立的不可分割的单位。
+    信息隐蔽性：即尽可能隐蔽对象的内部细节，对外形成一个边界，只保留有限的对外接口使之与外界发生联系。
+* 类的定义 class
+* 访问修饰符  private<defualt<protected<public
+* 外部类可以访问内部类的私有成员
+* 构造方法，构造方法中调用其它构造方法---this( )
+* 实例化（new）
+* 如不创建构造方法，系统会自动提供一无参构造方法(实例化子类时！)
+* 方法的重载（参数列表不同）overload
+* 类属性和类方法(静态成员)---对象属性和方法（非静态成员）
+* super--代表父类对象(显式调用父类的构造方法),this--代表对象本身
+* final 修饰的类不能被继承，修饰的方法不能被重写，修饰的变量不能更改（只能初始化一次）
+* 类变量(static)，在类加载时被创建，对象变量在实例化时被创建
+    在静态成员中不可以使用非静态成员，在非静态成员中可以使用静态成员，
+    原因是：静态成员的创建先于非静态成员
+    所以对象都共享静态成员
+*? 在Java中进行方法的参数传递时，无论传递的是原生数据类型还是引用类型，
+   参数传递方式统一是传值（pass by value）。Java中没有传引用（pass by reference）的概念。
+* 值（原生数据）类型作为参数传递时，形参的改变不会影响实参；
+  引用类型（数组，对象）作为参数传递时，形参的改变会影响实参。
+
+继承(Inheritence)：
+* 父类（超类,基类），子类（派生类）
+* extends，java中只能单继承
+* 子类会拥有有父类所有属性和方法
+* 实例化子类时，默认（隐示）“先”调用父类无参构造方法(要小心！父类提供无参构造方法或用super显式调用父类构造方法)
+* 方法的重写, override
+* 重写方法时，访问修饰符的范围只能扩大不能缩小
+* 子类的对象是可以保存在父类的变量中。
+* 向下转型
+* 所有类的祖宗为Object类，可以重写Object类的equals,toString方法，打印时会自动调用toString方法
+* equals()不重写，用的是Object类的默认实现（比较的是两个对象的地址）
+
+多态(Polymorphism)：
+* 多态(polymorphism)性是指对类的成员方法的调用将形成不同的实现方式(一个接口，多种方法)
+* 定义：同一操作   作用于不同的对象，可以有不同的解释，产生不同的执行结果。
+* 继承
+* 方法的重写
+* 父类的引用指向子类的对象
+
+抽象类---特殊的类
+* 抽象方法（没有方法体的方法）
+* abstract
+* 拥有抽象方法的类就为抽象类，抽象类不一定含有抽象方法
+* 抽象类不能实例化
+* 如果一个类继承于抽象类，那么它必需实理抽象方法或自身也是抽象类
+* 一个类如果继承于抽象类，那么他必须实现其抽象方法或自己变抽象类
+
+接口 
+* interface，接口是一套规范和标准，没有具体的实现细节，只有常量和公有抽象方法。
+* 接口中的方法，全为抽方法，默认为public abstract
+* 接口可以（多）继承接口
+* 类只能单继承，但可以多实现。
+* 一个类如果实现一个“子接口”那么它要实现这个“子接口”的祖祖辈辈的所有抽象方法
+* 接口的引用指向实现类的对象时，只可看到此类实现了的方法
+
+异常:try catch finally,throw throws;NullPointerException,IndexOutOfBoundsException
+
+Collection:Iterator,Set,Comparable/*比较器*/,List,Map,Stack,Queue
+LinkedList(双向链表),ArrayList(Object对象数组)
+List在遍历的过程中，不能增删其中的元素，否则java.util.ConcurrentModificationException
+
+IO:File,FileFilter,FilenameFilter;OutputStream,InputStream;Reader,Writer;Scanner
+FileOutputStream,BufferedOutputStream,DataOutputStream,ObjectOutputStream,ByteArrayOutputStream,RandomAccessFile
+InputStreamReader,FileWriter,BufferedWriter
+
+InputStream is = Thread.currentThread().getContextClassLoader()
+				.getSystemResourceAsStream(fileName);
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader bis = new BufferedReader(isr);
+		String t = bis.readLine();
+BufferedReader br = new BufferedReader(new FileReader(fromfileName));
+
+jdbc:
+Class,DriverManager,Connection,Statement(addBatch(String sql),executeBatch()),ResultSet,PreparedStatement,CallableStatement,ResultSetMetaData,DatabaseMetaData
+BeanUtils.populate(userBean, userMap);
+		String sql = "select *  from [t_user$]";
+		Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+		Connection conn = DriverManager.getConnection("jdbc:odbc:xls", "", "");
+---
+		CallableStatement cstat = conn.prepareCall("{call gwProc(?)}");
+		cstat.registerOutParameter(1, Types.INTEGER);
+		cstat.execute();
+		int t = cstat.getInt(1);
+---
+useUnicode=true&characterEncoding=GBK
+---
+#-------------------------------------------
+#文件编码也要是gbk
+#jdbc:mysql://localhost:3306/wish001?useUnicode=true&characterEncoding=gbk
+set names gbk;
+drop database if exists wish001;
+create database wish001 character set gbk;
+use wish001;
+create table roomRate 
+(
+id int primary key auto_increment,
+roomType varchar(50)character set gbk,
+rate int
+)default charset=gbk;
+
+insert into  roomRate (roomType,rate)
+values ('豪华客房',1500),('行政客房',1800),('高级套房',2500);
+
+select * from roomRate;
+#-------------------------------------------
+
+
+dbcp.properties:
+driverClassName=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/gwds
+username=root
+password=root
+#-----------
+initialSize=10
+maxActive=50
+maxIdle=20
+minIdle=5
+maxWait=60000
+connectionProperties=useUnicode=true;characterEncoding=utf8
+defaultAutoCommit=true
+defaultReadOnly=
+#READ_UNCOMMITTED, READ_COMMITTED, REPEATABLE_READ, SERIALIZABLE
+defaultTransactionIsolation=REPEATABLE_READ
+dbcp.properties:~
+		Properties p = new Properties();
+		p.load(Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("dbcp.properties"));
+		BasicDataSourceFactory bdsf = new BasicDataSourceFactory();
+		DataSource ds = bdsf.createDataSource(p);
+		Connection conn = ds.getConnection();
+---------------------------------
